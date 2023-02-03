@@ -38,6 +38,12 @@
             }
             ?>
         </select>
+        <?php 
+        $toppingOptions = array("Vegan", "Vegetarisch", "Vlees");
+        foreach ($toppingOptions as $value) {
+            echo "<input type='radio' name='topping' value='$value' id='$value'><label for='$value'>$value</label>";
+        }
+        ?>
     </form>
 </body>
 
