@@ -44,6 +44,13 @@
             echo "<input type='radio' name='topping' value='$value' id='$value'><label for='$value'>$value</label>";
         }
         ?>
+        <?php 
+        $kruidenOptions = array("Peterselie", "Oregano", "Chili flakes", "Zwarte peper");
+        foreach ($kruidenOptions as $value) {
+            echo "<input type='checkbox' name='kruiden' value='$value' id='$value'><label for='$value'>$value</label>";
+        }
+        ?>
+        <button type="submit">Bestel</button>
     </form>
 </body>
 
