@@ -10,6 +10,26 @@
 </head>
 
 <body>
+
+    <?php 
+        require "connect.php";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+            $sql = "INSERT INTO pizza VALUES (null, :bdm, :ss, :tpn, :krd)";
+            $stmnt = $pdo->prepare($sql);
+
+            $stmnt->bindValue(":bdm", $_POST["bodem"], PDO::PARAM_STR);
+            $stmnt->bindValue(":ss", $_POST["saus"], PDO::PARAM_STR);
+            $stmnt->bindValue(":tpn", $_POST["topping"], PDO::PARAM_STR);
+            $kruiden = $_POST["kruiden"];
+            $kruidOutput = "";
+            foreach ($_POST["kruiden"] as $value) {
+                $kruidOutput .= $value . ",";
+            }
+            $stmnt->bindValue(":krd", $kruidOutput, PDO::PARAM_STR);
+
+            $stmnt->execute();
+        }
+    ?>
     <h1>Maak zelf je pizza</h1>
     <form action="" method="post">
         <h3>Bodemformaat</h3>
@@ -45,11 +65,15 @@
         <?php
         $kruidenOptions = array("Peterselie", "Oregano", "Chili flakes", "Zwarte peper");
         foreach ($kruidenOptions as $value) {
-            echo "<div><input type='checkbox' name='kruiden' value='$value' id='$value'><label for='$value'>$value</label></div>";
+            echo "<div><input type='checkbox' name='kruiden[]' value='$value' id='$value'><label for='$value'>$value</label></div>";
         }
         ?>
         <button type="submit">Bestel</button>
     </form>
+    <?php 
+    
+    ?>
+
 </body>
 
 </html>
