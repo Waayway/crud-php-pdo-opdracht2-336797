@@ -28,6 +28,7 @@
             $stmnt->bindValue(":krd", $kruidOutput, PDO::PARAM_STR);
 
             $stmnt->execute();
+            header("Refresh: 0");
         }
     ?>
     <h1>Maak zelf je pizza</h1>
@@ -71,9 +72,36 @@
         <button type="submit">Bestel</button>
     </form>
     <?php 
-    
+        $sql = "SELECT * FROM pizza";
+        $stmnt = $pdo->prepare($sql);
+        $stmnt->execute();
+        $data = $stmnt->fetchAll(PDO::FETCH_OBJ);
     ?>
-
+    <table>
+        <thead>
+            <tr>
+                <th>Bodem formaat</th>
+                <th>Saus</th>
+                <th>Topping</th>
+                <th>Kruiden</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+                foreach ($data as $value) {
+                    echo "<tr>";
+                    echo "<td>$value->bodem</td>";
+                    echo "<td>$value->saus</td>";
+                    echo "<td>$value->topping</td>";
+                    echo "<td>$value->kruiden</td>";
+                    echo "</tr>";
+                }            
+            ?>
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>
