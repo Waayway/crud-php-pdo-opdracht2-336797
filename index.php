@@ -84,6 +84,8 @@
                 <th>Saus</th>
                 <th>Topping</th>
                 <th>Kruiden</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -94,11 +96,14 @@
                     echo "<td>$value->saus</td>";
                     echo "<td>$value->topping</td>";
                     echo "<td>$value->kruiden</td>";
+                    echo "<td><a href='update.php?id=$value->id'>Update</a></td>";
+                    echo "<td><a href='delete.php?id=$value->id'>Delete</a></td>";
                     echo "</tr>";
                 }            
             ?>
             <tr>
-                <td></td>
+                
+                
             </tr>
         </tbody>
     </table>
